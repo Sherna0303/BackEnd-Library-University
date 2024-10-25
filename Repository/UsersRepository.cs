@@ -17,5 +17,10 @@ namespace LibrarySystemWeb.Repository
             return await _dbContext.Users
                 .SingleOrDefaultAsync( x => x.Email == email && x.Password == password );
         }
+
+        public async Task<Users?> GetByEmail( string email )
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync( u => u.Email == email );
+        }
     }
 }
