@@ -10,6 +10,11 @@ public class ApplicationDbContext : DbContext
     {
     }
 
+    public async Task<bool> SaveAsync()
+    {
+        return await SaveChangesAsync() > 0;
+    }
+
     public DbSet<Student> Students { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<Loan> Loans { get; set; }

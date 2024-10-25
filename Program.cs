@@ -9,18 +9,18 @@ using System.Text;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder( args );
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors( options =>
 {
-    options.AddPolicy(MyAllowSpecificOrigins,
+    options.AddPolicy( MyAllowSpecificOrigins,
         builder =>
         {
-            builder.WithOrigins("http://localhost:5173")
+            builder.WithOrigins( "http://localhost:5173" )
                 .AllowAnyMethod()
                 .AllowAnyHeader();
-        });
-});
+        } );
+} );
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -31,6 +31,7 @@ builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<ICreateTokenService, CreateTokenService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddAuthentication( JwtBearerDefaults.AuthenticationScheme )
     .AddJwtBearer( options =>
     {
@@ -45,18 +46,18 @@ builder.Services.AddAuthentication( JwtBearerDefaults.AuthenticationScheme )
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>( options =>
+    options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if ( app.Environment.IsDevelopment() )
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors( MyAllowSpecificOrigins );
 app.MapControllers();
 app.UseHttpsRedirection();
 app.Run();
