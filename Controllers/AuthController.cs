@@ -1,5 +1,5 @@
 ﻿using LibrarySystemWeb.Interfaces;
-using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +19,7 @@ namespace LibrarySystemWeb.Controllers
         }
 
         [HttpPost( "login" )]
-        public async Task<IActionResult> Login( Users userDto )
+        public async Task<IActionResult> Login( UserDto userDto )
         {
 
             var userAuth = await _loginService.GetUser( userDto );

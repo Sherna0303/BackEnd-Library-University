@@ -2,7 +2,10 @@ using LibrarySystemWeb;
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Repository;
 using LibrarySystemWeb.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -28,6 +31,17 @@ builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<ICreateTokenService, CreateTokenService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddAuthentication( JwtBearerDefaults.AuthenticationScheme )
+    .AddJwtBearer( options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey( Encoding.UTF8.GetBytes( builder.Configuration[ "Jwt:Key" ] ) ),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    } );
 
 builder.Services.AddControllers();
 

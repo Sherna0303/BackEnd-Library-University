@@ -1,5 +1,5 @@
 ﻿using LibrarySystemWeb.Interfaces;
-using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Dtos;
 using LibrarySystemWeb.Repository;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -19,7 +19,7 @@ namespace LibrarySystemWeb.Services
             _userRepository = userRepository;
         }
 
-        public async Task<string> GenerateToken( Users user )
+        public async Task<string> GenerateToken( UserDto user )
         {
             var userData = await _userRepository.GetByEmail( user.Email );
 

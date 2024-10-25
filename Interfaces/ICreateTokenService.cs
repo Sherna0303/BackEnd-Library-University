@@ -1,9 +1,9 @@
-﻿using LibrarySystemWeb.Models;
+﻿using LibrarySystemWeb.Models.Dtos;
 
 namespace LibrarySystemWeb.Interfaces
 {
     public interface ICreateTokenService
     {
-        Task<string> GenerateToken( Users user );
+        Task<string> GenerateToken( UserDto user );
     }
 }

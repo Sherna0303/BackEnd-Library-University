@@ -1,5 +1,6 @@
 ﻿using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Dtos;
 using LibrarySystemWeb.Repository;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,7 +16,7 @@ namespace LibrarySystemWeb.Services
             _userRepository = userRepository;
         }
 
-        public async Task<Users?> GetUser( Users user )
+        public async Task<Users?> GetUser( UserDto user )
         {
             return await _userRepository.VerifyAuthentication( user.Email, HashPassword( user.Password ) );
         }
