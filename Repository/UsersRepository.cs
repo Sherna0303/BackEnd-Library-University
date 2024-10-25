@@ -22,5 +22,18 @@ namespace LibrarySystemWeb.Repository
         {
             return await _dbContext.Users.FirstOrDefaultAsync( u => u.Email == email );
         }
+
+        public async Task<bool> EmailAlreadyRegistered( string email )
+        {
+            return await _dbContext.Users
+                .AnyAsync( x => x.Email == email );
+        }
+
+        public async Task<Users?> AddUser( Users user )
+        {
+            await _dbContext.Users.AddAsync( user );
+            return user;
+        }
+
     }
 }
