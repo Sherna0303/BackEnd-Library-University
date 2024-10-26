@@ -26,7 +26,7 @@ namespace LibrarySystemWeb.Services
             var claims = new[]
             {
                 new Claim("Id", userData.Id.ToString()),
-                new Claim(ClaimTypes.Role, userData.Role.ToString()),
+                new Claim("Role", userData.Role.ToString()),
             };
 
             var key = new SymmetricSecurityKey( Encoding.UTF8.GetBytes( _configuration.GetSection( "JWT:Key" ).Value ) );
