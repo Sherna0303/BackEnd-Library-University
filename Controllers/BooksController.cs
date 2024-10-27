@@ -1,9 +1,11 @@
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibrarySystemWeb.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class BooksController : ControllerBase
