@@ -10,8 +10,7 @@ public class Book
     public int Id { get; set; }
 
     [MaxLength(200)] public string Name { get; set; } = default!;
-
     [MaxLength(200)] public string? Isbn { get; set; }
-
     [MaxLength(200)] public string? Color { get; set; }
+    public bool Avaiable { get; set; }
 }
