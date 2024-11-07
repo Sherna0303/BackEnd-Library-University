@@ -30,6 +30,13 @@ public class LoansController : ControllerBase
         if (loan == null) return NotFound();
         return Ok(loan);
     }
+    
+    [HttpGet]
+    [Route("main/{userId}")]
+    public List<LoanResponse> GetMyLoans(int userId)
+    {
+        return _loanService.GetMain(userId);
+    }
 
     [HttpPost]
     public IActionResult AddLoan(Loan loan)

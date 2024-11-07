@@ -53,6 +53,29 @@ public class LoanService : ILoanService
 
         return loanResponse;
     }
+    
+    public List<LoanResponse> GetMain(int userId)
+    {
+        var loans = _dbContext.Loans.Where(l => l.Student_Id==userId).ToList();
+        var loanResponses = new List<LoanResponse>();
+
+        foreach (var loan in loans)
+        {
+            var loanResponse = new LoanResponse
+            {
+                Id = loan.Id,
+                Created = loan.Created,
+                Student_Id = loan.Student_Id,
+                Book_Id = loan.Book_Id,
+                BookName = GetBookName(loan.Book_Id),
+                StudentName = GetUserName(loan.Student_Id)
+            };
+
+            loanResponses.Add(loanResponse);
+        }
+
+        return loanResponses;
+    }
 
     public void Add(Loan loan)
     {

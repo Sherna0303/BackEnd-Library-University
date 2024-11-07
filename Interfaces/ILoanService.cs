@@ -6,6 +6,7 @@ public interface ILoanService
 {
     IEnumerable<LoanResponse> GetAll();
     LoanResponse? GetById(int id);
+    List<LoanResponse> GetMain(int id);
     void Add(Loan loan);
     void Update(Loan loan);
     void Delete(int id);
