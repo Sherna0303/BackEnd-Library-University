@@ -1,3 +1,4 @@
+using LibrarySystemWeb.Context;
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
 
@@ -17,7 +18,7 @@ public class BookService : IBookService
         return _dbContext.Books.ToList();
     }
 
-    public Book GetById(int id)
+    public Book? GetById(int id)
     {
         return _dbContext.Books.FirstOrDefault(s => s.Id == id);
     }

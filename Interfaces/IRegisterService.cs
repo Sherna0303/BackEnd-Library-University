@@ -5,6 +5,6 @@ namespace LibrarySystemWeb.Interfaces
 {
     public interface IRegisterService
     {
-        Task<Users?> RegisterUser( UserRegisterDto user );
+        Task<User?> RegisterUser( UserRegisterDto user );
     }
 }

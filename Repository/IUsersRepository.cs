@@ -4,9 +4,9 @@ namespace LibrarySystemWeb.Repository
 {
     public interface IUsersRepository
     {
-        Task<Users?> VerifyAuthentication( string email, string password );
-        Task<Users?> GetByEmail( string email );
+        Task<User?> VerifyAuthentication( string email, string password );
+        Task<User?> GetByEmail( string email );
         Task<bool> EmailAlreadyRegistered( string email );
-        Task<Users?> AddUser( Users user );
+        Task<User?> AddUser( User user );
     }
 }

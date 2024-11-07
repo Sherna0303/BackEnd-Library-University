@@ -38,9 +38,9 @@ namespace LibrarySystemWeb.Controllers
         }
 
         [HttpPost( "register" )]
-        public async Task<IActionResult> Register( UserRegisterDto userRegisterDTO )
+        public async Task<IActionResult> Register( UserRegisterDto userRegisterDto )
         {
-            var user = await _registerService.RegisterUser( userRegisterDTO );
+            var user = await _registerService.RegisterUser( userRegisterDto );
 
             if ( user is null )
             {

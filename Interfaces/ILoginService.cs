@@ -5,6 +5,6 @@ namespace LibrarySystemWeb.Interfaces
 {
     public interface ILoginService
     {
-        Task<Users> GetUser( UserDto user );
+        Task<User> GetUser( UserDto user );
     }
 }

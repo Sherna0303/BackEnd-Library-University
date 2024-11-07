@@ -1,11 +1,9 @@
-﻿using LibrarySystemWeb.Models.Enum;
-
-namespace LibrarySystemWeb.Models.Dtos
+﻿namespace LibrarySystemWeb.Models.Dtos
 {
     public class UserRegisterDto
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public RoleEnum Role { get; set; }
+        public string Email { get; set; } = default!;
+        public string Password { get; set; } = default!;
+        public string Name { get; set; } = default!;
     }
 }

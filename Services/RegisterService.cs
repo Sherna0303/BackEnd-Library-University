@@ -4,6 +4,8 @@ using LibrarySystemWeb.Models.Dtos;
 using LibrarySystemWeb.Repository;
 using System.Security.Cryptography;
 using System.Text;
+using LibrarySystemWeb.Context;
+using LibrarySystemWeb.Models.Enum;
 
 namespace LibrarySystemWeb.Services
 {
@@ -18,21 +20,22 @@ namespace LibrarySystemWeb.Services
             _dbContext = dbContext;
         }
 
-        public async Task<Users?> RegisterUser( UserRegisterDto user )
+        public async Task<User?> RegisterUser( UserRegisterDto user )
         {
-            bool AlreadyRegistered = await _userRepository.EmailAlreadyRegistered( user.Email );
+            bool alreadyRegistered = await _userRepository.EmailAlreadyRegistered( user.Email );
 
-            if ( AlreadyRegistered )
+            if ( alreadyRegistered )
             {
                 return null;
             }
 
 
-            var userDb = new Users()
+            var userDb = new User()
             {
                 Email = user.Email,
+                Name = user.Name,
                 Password = HashPassword( user.Password ),
-                Role = user.Role
+                Role = RoleEnum.STUDENT
             };
 
             await _userRepository.AddUser( userDb );

@@ -1,3 +1,4 @@
+using LibrarySystemWeb.Context;
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
 
@@ -26,7 +27,7 @@ public class LoanService : ILoanService
                 Student_Id = loan.Student_Id,
                 Book_Id = loan.Book_Id,
                 BookName = GetBookName(loan.Book_Id),
-                StudentName = GetStudentName(loan.Student_Id)
+                StudentName = GetUserName(loan.Student_Id)
             };
 
             loanResponses.Add(loanResponse);
@@ -47,7 +48,7 @@ public class LoanService : ILoanService
             Student_Id = loan.Student_Id,
             Book_Id = loan.Book_Id,
             BookName = GetBookName(loan.Book_Id),
-            StudentName = GetStudentName(loan.Student_Id)
+            StudentName = GetUserName(loan.Student_Id)
         };
 
         return loanResponse;
@@ -84,12 +85,12 @@ public class LoanService : ILoanService
                 : "Book not found";
     }
 
-    public string GetStudentName(int studentId)
+    public string GetUserName(int userId)
     {
-        var book = _dbContext.Students.FirstOrDefault(b => b.Id == studentId);
+        var user = _dbContext.Users.FirstOrDefault(b => b.Id == userId);
         return
-            book != null
-                ? book.Name
-                : "Student not found";
+            user != null
+                ? user.Name
+                : "User not found";
     }
 }

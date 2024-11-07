@@ -1,7 +1,7 @@
 using LibrarySystemWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LibrarySystemWeb;
+namespace LibrarySystemWeb.Context;
 
 public class ApplicationDbContext : DbContext
 {
@@ -15,8 +15,7 @@ public class ApplicationDbContext : DbContext
         return await SaveChangesAsync() > 0;
     }
 
-    public DbSet<Student> Students { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<Loan> Loans { get; set; }
-    public DbSet<Users> Users { get; set; }
+    public DbSet<User> Users { get; set; }
 }

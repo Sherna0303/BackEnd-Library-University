@@ -1,4 +1,5 @@
-﻿using LibrarySystemWeb.Models;
+﻿using LibrarySystemWeb.Context;
+using LibrarySystemWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibrarySystemWeb.Repository
@@ -12,13 +13,13 @@ namespace LibrarySystemWeb.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Users?> VerifyAuthentication( string email, string password )
+        public async Task<User?> VerifyAuthentication( string email, string password )
         {
             return await _dbContext.Users
                 .SingleOrDefaultAsync( x => x.Email == email && x.Password == password );
         }
 
-        public async Task<Users?> GetByEmail( string email )
+        public async Task<User?> GetByEmail( string email )
         {
             return await _dbContext.Users.FirstOrDefaultAsync( u => u.Email == email );
         }
@@ -29,7 +30,7 @@ namespace LibrarySystemWeb.Repository
                 .AnyAsync( x => x.Email == email );
         }
 
-        public async Task<Users?> AddUser( Users user )
+        public async Task<User?> AddUser( User user )
         {
             await _dbContext.Users.AddAsync( user );
             return user;

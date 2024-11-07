@@ -16,7 +16,7 @@ namespace LibrarySystemWeb.Services
             _userRepository = userRepository;
         }
 
-        public async Task<Users?> GetUser( UserDto user )
+        public async Task<User?> GetUser( UserDto user )
         {
             return await _userRepository.VerifyAuthentication( user.Email, HashPassword( user.Password ) );
         }
