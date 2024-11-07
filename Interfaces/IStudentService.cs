@@ -4,7 +4,7 @@ namespace LibrarySystemWeb.Interfaces;
 
 public interface IStudentService
 {
-    IEnumerable<Student> GetAll();
+    List<Users> GetAll();
     Student GetById(int id);
     void Add(Student student);
     void Update(Student student);

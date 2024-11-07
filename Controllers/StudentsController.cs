@@ -7,7 +7,7 @@ namespace LibrarySystemWeb.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]")] 
 public class StudentsController : ControllerBase
 {
     private readonly IStudentService _studentService;
@@ -18,7 +18,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Student> GetAllStudents()
+    public List<Users> GetAllStudents()
     {
         return _studentService.GetAll();
     }

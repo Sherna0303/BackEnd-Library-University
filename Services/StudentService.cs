@@ -1,5 +1,6 @@
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Enum;
 
 namespace LibrarySystemWeb.Services;
 
@@ -11,7 +12,7 @@ public class StudentService : IStudentService {
         _dbContext = dbContext;
     }
 
-    public IEnumerable<Student> GetAll() => _dbContext.Students.ToList();
+    public List<Users> GetAll() => _dbContext.Users.Where(u => u.Role==RoleEnum.STUDENT).ToList();
 
     public Student GetById(int id) => _dbContext.Students.FirstOrDefault(s => s.Id == id);
 
