@@ -1,6 +1,7 @@
 using LibrarySystemWeb.Context;
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Dtos;
 using LibrarySystemWeb.Models.Enum;
 
 namespace LibrarySystemWeb.Services;
@@ -23,11 +24,18 @@ public class UserService : IUserService {
         _dbContext.SaveChanges();
     }
 
-    public void Update(User user)
+    public void Update( UserUpdateDto user )
     {
-        _dbContext.Users.Update(user);
-        _dbContext.SaveChanges();
+        var existingUser = _dbContext.Users.FirstOrDefault( u => u.Id == user.Id );
+        if ( existingUser != null )
+        {
+            existingUser.Name = user.Name;
+            existingUser.Email = user.Email;
+
+            _dbContext.SaveChanges();
+        }
     }
+
 
     public void Delete(int id)
     {

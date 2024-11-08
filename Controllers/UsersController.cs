@@ -1,5 +1,6 @@
 using LibrarySystemWeb.Interfaces;
 using LibrarySystemWeb.Models;
+using LibrarySystemWeb.Models.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, User user)
+    public IActionResult UpdateUser(int id, UserUpdateDto user )
     {
         if (id != user.Id) return BadRequest();
 
