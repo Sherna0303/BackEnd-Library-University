@@ -10,7 +10,12 @@ public class Loan
     public int Id { get; set; }
 
     public DateTime Created { get; set; } = DateTime.Now;
-    public DateOnly ExpireDate { get; set; } = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
+    public DateOnly ExpireDate { get; set; }
     public int Student_Id { get; set; }
     public int Book_Id { get; set; }
+
+    public Loan()
+    {
+        ExpireDate = DateOnly.FromDateTime(Created.AddDays(14));
+    }
 }
